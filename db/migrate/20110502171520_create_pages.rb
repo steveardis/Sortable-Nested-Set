@@ -4,6 +4,11 @@ class CreatePages < ActiveRecord::Migration
       t.string :title
       t.text :content
 
+      t.integer :parent_id
+      t.integer :lft
+      t.integer :rgt
+      t.integer :depth, :default=>0
+
       t.timestamps
     end
   end
