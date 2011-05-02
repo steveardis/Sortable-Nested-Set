@@ -17,6 +17,11 @@
   tolerance: 'pointer',
   toleranceElement: '> div'
   })
+
+  $('ol.sortable').sortable({
+  update: function(event, ui) {alert(ui.item.attr('id'));}
+  });
+
   });
 
 :css
