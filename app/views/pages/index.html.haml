@@ -1,5 +1,62 @@
 - content_for :css do
   =stylesheet_link_tag 'nested_set/style', :media=>'screen'
 
-.nested_set
+:javascript
+  $(document).ready(function(){
+  $('ol.sortable').nestedSortable({
+  disableNesting: 'no-nest',
+  forcePlaceholderSize: true,
+  handle: 'div',
+  helper:	'clone',
+  items: 'li',
+  maxLevels: 3,
+  opacity: .6,
+  placeholder: 'placeholder',
+  revert: 250,
+  tabSize: 25,
+  tolerance: 'pointer',
+  toleranceElement: '> div'
+  })
+  });
+
+:css
+  .placeholder {
+  background-color: #cfcfcf;
+  }
+
+  .ui-nestedSortable-error {
+  background:#fbe3e4;
+  color:#8a1f11;
+  }
+
+  ol {
+  margin: 0;
+  padding: 0;
+  padding-left: 30px;
+  }
+
+  ol.sortable, ol.sortable ol {
+  margin: 0 0 0 25px;
+  padding: 0;
+  list-style-type: none;
+  }
+
+  ol.sortable {
+  margin: 4em 0;
+  }
+
+  .sortable li {
+  margin: 7px 0 0 0;
+  padding: 0;
+  }
+
+  .sortable li div  {
+  border: 1px solid black;
+  padding: 3px;
+  margin: 0;
+  cursor: move;
+  }
+
+
+%ol.sortable.ui-sortable
   = raw ans_tree(@pages, :path=>'pages/nested_set', :admin=>true, :class_name=>'Page', :id_field=>:id, :clean=>false)

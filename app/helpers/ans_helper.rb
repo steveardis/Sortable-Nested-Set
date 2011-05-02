@@ -66,6 +66,7 @@ module AnsHelper
       end
     else
       res= ''
+      controls= ''
       child_res= ''
 
       # select childs
@@ -74,20 +75,11 @@ module AnsHelper
 
       # admin controls
       if opts[:admin]
-        controls = ans_controls(node, opts)
-        res<< content_tag(:div, controls, :class=>:controls)
+        c = ans_controls(node, opts)
+        controls= content_tag(:span, c, :class=>:controls)
       end
 
-      # concat elems to res string
-      res<< render(:partial => "#{opts[:path]}/node", :locals => {:node=>node, :opts=>opts, :root=>root})
-      res= content_tag(:div, raw(res), :class=>:elem)
-
-      # delete current node from tree if you want
-      # I hope, with it, recursively moving by tree must be faster
-      node_id= node.id # remove?
-      tree.delete(node) if opts[:clean]
-
-      # find is of first and last node
+      # find id of first and last node
       childs_first_id= childs.empty? ? nil : childs.first.id
       childs_last_id=  childs.empty? ? nil : childs.last.id
 
@@ -100,8 +92,18 @@ module AnsHelper
       end
 
       # decorate childs with div tag
-      child_res= child_res.blank? ? '' : content_tag(:div, raw(child_res), :class=>:childs)   
-      result << (res + child_res)
+      child_res= child_res.blank? ? '' : content_tag(:ol, raw(child_res), :class=>:childs)   
+
+      # concat elems to res string
+      res<< render(:partial => "#{opts[:path]}/node", :locals => {:node=>node, :opts=>opts, :root=>root, :controls=>controls})
+      res= content_tag(:li, raw(res + child_res), :id=>"list_#{node.id}", :class=>:elem)
+
+      # delete current node from tree if you want
+      # I hope, with it, recursively moving by tree must be faster
+      node_id= node.id # remove?
+      tree.delete(node) if opts[:clean]
+
+      result << res
     end
     
     if opts[:level].zero?

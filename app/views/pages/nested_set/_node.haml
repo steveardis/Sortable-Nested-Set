@@ -20,6 +20,6 @@
 
 - link_txt= node.title
 - title= node.id
-= content_tag(:div, link_to(link_txt, page_path(node), :title=>title), :class=>"link #{'root' if root}")
+= content_tag(:div, (link_to(link_txt, page_path(node), :title=>title) + controls), :class=>"link #{'root' if root}")
 
 
