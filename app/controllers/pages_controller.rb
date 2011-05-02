@@ -1,8 +1,27 @@
 class PagesController < ApplicationController
 
   def index
-    @pages = Page.all
+    @pages = Page.nested_set.all
   end
+
+  # nested_set          - up: obj.move_left
+  # reversed_nested_set - up: obj.move_right
+  def up
+    @page = Page.find(params[:id])
+    @page.move_left
+    flash[:notice] = t('pages.moved_up')
+    redirect_to(root_path)
+  end
+
+  # nested_set          - down: obj.move_right
+  # reversed_nested_set - down: obj.move_left
+  def down
+    @page = Page.find(params[:id])
+    @page.move_right
+    flash[:notice] = t('pages.moved_down')
+    redirect_to(root_path)
+  end
+
   def show
     @page = Page.find(params[:id])
   end
@@ -23,7 +42,6 @@ class PagesController < ApplicationController
     else
       render :action => "new"
     end
-
   end
 
   def update
