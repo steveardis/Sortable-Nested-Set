@@ -1,0 +1,29 @@
+-# UP
+- if opts[:first]
+  - up = link_to '', '#', :title=>t('pages.cant_up'), :class=>'button cantup'
+- else
+  - up = link_to '', up_page_path(node, :page=>params[:page]), :title=>t('pages.up'), :class=>'button up'
+
+-# DOWN
+- if opts[:last]
+  - down= link_to '', '#', :title=>t('pages.cant_down'), :class=>'button cantdown'
+- else
+  - down= link_to '', down_page_path(node, :page=>params[:page]), :title=>t('pages.down'), :class=>'button down'
+
+-# EDIT
+- edit= link_to '', edit_page_path(node), :title=>t('pages.edit_this'), :class=>'button edit'
+
+-# DELETE
+- if opts[:has_childs]
+  - delete=  link_to('', page_path(node, :page=>params[:page]),
+    :title=>t('pages.delete'),
+    :method=>:delete,
+    :confirm=>t('pages.delete_confirm'),
+    :class=>'button delete') 
+- else
+  - delete=  link_to('', '#',
+    :title=>t('pages.cant_be_deleted'),
+    :onclick=>"alert('#{t('pages.delete_nested_elements')}')",
+    :class=>'button undeleted')
+
+= up+down+edit+delete

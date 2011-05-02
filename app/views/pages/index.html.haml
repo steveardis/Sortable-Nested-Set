@@ -1,21 +1,5 @@
-%h1 Listing pages
+- content_for :css do
+  =stylesheet_link_tag 'nested_set/style', :media=>'screen'
 
-%table
-  %tr
-    %th Title
-    %th Content
-    %th
-    %th
-    %th
-
-  - @pages.each do |page|
-    %tr
-      %td= page.title
-      %td= page.content
-      %td= link_to 'Show', page
-      %td= link_to 'Edit', edit_page_path(page)
-      %td= link_to 'Destroy', page, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Page', new_page_path
+.nested_set
+  = raw ans_tree(@pages, :path=>'pages/nested_set', :admin=>true, :class_name=>'Page', :id_field=>:id, :clean=>false)
