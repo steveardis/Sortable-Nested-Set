@@ -67,7 +67,7 @@ module AnsHelper
     else
       res= ''
       controls= ''
-      child_res= ''
+      childs_res= ''
 
       # select childs
       childs= tree.select{|elem| elem.parent_id == node.id}
@@ -88,15 +88,15 @@ module AnsHelper
         is_first= (elem.id==childs_first_id)
         is_last= (elem.id==childs_last_id)
         _opts = opts.merge({:node=>elem, :root=>false, :level=>opts[:level].next, :first=>is_first, :last=>is_last})
-        child_res << ans_tree(tree, _opts)
+        childs_res << ans_tree(tree, _opts)
       end
 
       # decorate childs with div tag
-      child_res= child_res.blank? ? '' : content_tag(:ol, raw(child_res), :class=>:childs)   
+      childs_res= childs_res.blank? ? '' : render(:partial=>"#{opts[:path]}/nested_set", :locals=>{:childs=>childs_res})
 
       # concat elems to res string
-      res<< render(:partial => "#{opts[:path]}/node", :locals => {:node=>node, :opts=>opts, :root=>root, :controls=>controls})
-      res= content_tag(:li, raw(res + child_res), :id=>"list_#{node.id}", :class=>:elem)
+      node_block= render(:partial=>"#{opts[:path]}/node", :locals=>{:node=>node, :opts=>opts, :root=>root, :controls=>controls})
+      res= render(:partial=>"#{opts[:path]}/nested_set_item",  :locals=>{:node=>node, :node_block=>node_block, :childs=>childs_res})
 
       # delete current node from tree if you want
       # I hope, with it, recursively moving by tree must be faster

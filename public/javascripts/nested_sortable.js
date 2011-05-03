@@ -142,6 +142,13 @@
 				this._isAllowed(previousItem, level+childLevels+1);
 				if (previousItem[0].children[1] == null) {
 					previousItem[0].appendChild(newList);
+          // github.com/the-teacher
+          if(previousItem.attr('id')!='undefined'){
+					  newList.id = o.listType + '_'+ previousItem.attr('id');
+          }else{
+            newList.className = 'unnamed_childs_container'
+          }
+          // github.com/the-teacher
 				}
 				previousItem[0].children[1].appendChild(this.placeholder[0]);
 				this._trigger("change", event, this._uiHash());
