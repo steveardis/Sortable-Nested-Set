@@ -20,7 +20,9 @@
 
     $('ol.sortable').sortable({
       update: function(event, ui){
-        alert(ui.item.attr('id'));
+        $('#parent').html(ui.item.parent().attr('id'));  
+        $('#prev').html(ui.item.prev().attr('id'));
+        $('#next').html(ui.item.next().attr('id'));
       }
     });
   });
@@ -63,5 +65,18 @@
     cursor: move;
   }
 
-%ol.sortable.ui-sortable
+%p
+  Parent: 
+  #parent
+    &nbsp;
+%p
+  Prev sibling: 
+  #prev
+    &nbsp;
+%p
+  Next sibling: 
+  #next
+    &nbsp;
+
+%ol.sortable.ui-sortable#nested_set_of_pages
   = raw ans_tree(@pages, :path=>'pages/nested_set', :admin=>true, :class_name=>'Page', :id_field=>:id, :clean=>false)
