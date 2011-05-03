@@ -144,7 +144,7 @@
 					previousItem[0].appendChild(newList);
           // github.com/the-teacher
           if(previousItem.attr('id')!='undefined'){
-					  newList.id = 'nested_set_of_'+ previousItem.attr('id');
+					  newList.id = previousItem.attr('id') + '_nested_set';
           }else{
             newList.className = 'unnamed_nested_set'
           }

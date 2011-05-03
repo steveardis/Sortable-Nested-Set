@@ -5,11 +5,27 @@ class PagesController < ApplicationController
   end
 
   def restructure
-    node_id   = params[:node_id]
-    parent_id = params[:parent_id]
-    prev_id   = params[:prev_id]
-    next_id   = params[:next_id]
+    node_id   = params[:node_id].to_i
+    parent_id = params[:parent_id].to_i
+    prev_id   = params[:prev_id].to_i
+    next_id   = params[:next_id].to_i
 
+    return :text=>"alert('do nothing');" if parent_id.zero? && prev_id.zero? && next_id.zero?
+
+    # havn't prev and next
+    # have prev
+    # have next
+    if prev_id.zero? && next_id.zero?
+      Page.find(node_id).move_to_child_of Page.find(parent_id)
+      render :text=>"alert('moved!');" and return
+    elsif !prev_id.zero?
+      Page.find(node_id).move_to_right_of Page.find(prev_id)
+      render :text=>"alert('moved to right!');" and return
+    elsif !next_id.zero?
+      Page.find(node_id).move_to_left_of Page.find(next_id)
+      render :text=>"alert('moved to left!');" and return
+    end
+    
     str = [node_id, parent_id, prev_id, next_id].join(' | ')
     render :text=>"alert('#{str}');" and return
   end
