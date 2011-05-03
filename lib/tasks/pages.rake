@@ -1,3 +1,9 @@
+namespace :app do
+    # rake app:create
+    desc 'create basic data for application'
+    task :create => ['db:drop', 'db:create', 'db:migrate', 'db:pages:create']
+end
+
 namespace :db do
   namespace :pages do
     
@@ -6,7 +12,7 @@ namespace :db do
     task :create => :environment do
       puts 'Pages creating'
 
-        5.times do |i|
+        3.times do |i|
           page= Page.new
           page.title= "level 1, elem #{i} | " + Faker::Lorem.sentence(3)
           page.content= Faker::Lorem.sentence(30)
@@ -14,7 +20,7 @@ namespace :db do
           puts 'page --'
 
           if [true, false].shuffle.first
-            5.times do |j|
+            3.times do |j|
               _page= Page.new
               _page.title= "level 2, elem #{j} | " + Faker::Lorem.sentence(3)
               _page.content= Faker::Lorem.sentence(30)
@@ -23,7 +29,7 @@ namespace :db do
               puts 'page -- --'
 
               if [true, false].shuffle.first
-                10.times do |k|
+                3.times do |k|
                   __page= Page.new
                   __page.title= "level 3, elem #{k} | " + Faker::Lorem.sentence(3)
                   __page.content= Faker::Lorem.sentence(30)
