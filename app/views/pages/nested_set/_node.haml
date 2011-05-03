@@ -21,6 +21,7 @@
 - node_parent_id = node.parent_id.blank? ? 0 : node.parent_id
 - link_txt= node.id.to_s + ' :: ' +[node_parent_id, node.lft, node.rgt].join(' - ') + ' | '+  node.title
 - title= node.id
-= content_tag(:div, (link_to(link_txt, page_path(node), :title=>title) + controls), :class=>"link #{'root' if root}")
+- handle = content_tag :div, 'X', :class=>:handle
+= content_tag(:div, (handle + controls + link_to(link_txt, page_path(node), :title=>title)), :class=>"link #{'root' if root}")
 
 

@@ -1,38 +1,47 @@
-.map, .nested_set{ margin:0 0 15px 0; }
-.map a, .nested_set a{
+.nested_set{
+  padding:0 0 0 10px;
+}
+.nested_set ol{
+  margin:0 0 0 25px;
+  border-left:1px dashed gray;
+}
+.nested_set li{
+  margin-bottom:5px;
+}
+.nested_set li:hover{
+  background:#EFEFEF;
+}
+.nested_set a{
   color:#000;
   font-size:10pt;
   font-weight:normal;
   text-decoration:none;
   line-height: 150%;
+  display: block;
+  margin-right:140px;
+  overflow:hidden;
+  zoom:1;
 }
-.map .root a, .nested_set .root a{ font-weight:bold; }
-
+.nested_set .root a{
+  font-weight:bold;
+}
 .nested_set a:hover{
   color:#2476FF;
   text-decoration:none;
-}
-.nested_set .elem{
-  overflow:hidden;
-  zoom:1;
-  margin:0 0 3px 0;  
-  position: relative;
-}
-.nested_set .elem:hover{
-  background:#EEE;
+  background:none;
 }
 .nested_set .link{
-  margin:0 140px 0 0;
+  overflow: hidden;
+  zoom:1;
   padding:5px;
+  margin:0 0 5px 5px;
+}
+.nested_set .link:hover{
+  background:#DDD;
 }
 .nested_set .controls{
-  width:140px;
+  width:120px;
   float:right;
-
-}
-.nested_set .childs{
-  margin:0 0 0 20px;
-  border-left:1px dashed #DDD;
 }
 .nested_set .button{
   width:20px;
@@ -52,7 +61,6 @@
 .nested_set .root_create_link a{
   font-size:14pt;
 }
-
 .nested_set .button.new{ background:transparent url(/images/iconza/blue/add.png) no-repeat scroll center center; }
 .nested_set .button.new:hover{ background:transparent url(/images/iconza/red/add.png) no-repeat scroll center center;}
 
