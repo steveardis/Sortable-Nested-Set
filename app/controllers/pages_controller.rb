@@ -4,6 +4,16 @@ class PagesController < ApplicationController
     @pages = Page.nested_set.all
   end
 
+  def restructure
+    node_id   = params[:node_id]
+    parent_id = params[:parent_id]
+    prev_id   = params[:prev_id]
+    next_id   = params[:next_id]
+
+    str = [node_id, parent_id, prev_id, next_id].join(' | ')
+    render :text=>"alert('#{str}');" and return
+  end
+
   # nested_set          - up: obj.move_left
   # reversed_nested_set - up: obj.move_right
   def up
