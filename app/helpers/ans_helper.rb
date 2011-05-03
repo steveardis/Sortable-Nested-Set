@@ -92,7 +92,7 @@ module AnsHelper
       end
 
       # decorate childs with div tag
-      childs_res= childs_res.blank? ? '' : render(:partial=>"#{opts[:path]}/nested_set", :locals=>{:childs=>childs_res})
+      childs_res= childs_res.blank? ? '' : render(:partial=>"#{opts[:path]}/nested_set", :locals=>{:parent=>node, :childs=>childs_res})
 
       # concat elems to res string
       node_block= render(:partial=>"#{opts[:path]}/node", :locals=>{:node=>node, :opts=>opts, :root=>root, :controls=>controls})
