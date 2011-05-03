@@ -18,7 +18,8 @@
 =# opts[:has_childs].to_s
 =# opts[:level].to_s
 
-- link_txt= node.title
+- node_parent_id = node.parent_id.blank? ? 0 : node.parent_id
+- link_txt= [node_parent_id, node.lft, node.rgt].join(' - ') + ' | '+  node.title
 - title= node.id
 = content_tag(:div, (link_to(link_txt, page_path(node), :title=>title) + controls), :class=>"link #{'root' if root}")
 

@@ -21,7 +21,21 @@
     $('ol.sortable').sortable({
       update: function(event, ui){
         $('#parent').html(ui.item.parent().attr('id'));  
-        $('#prev').html(ui.item.prev().attr('id'));
+
+        prev_id = ui.item.prev().attr('id');
+        if(typeof(prev_id) == 'undefined'){
+          $('#prev').html('It is first!');
+        }else{
+          $('#prev').html(prev_id);
+        }
+
+        next_id = ui.item.next().attr('id');
+        if(typeof(next_id) == 'undefined'){
+          $('#next').html('It is last!');
+        }else{
+          $('#next').html(next_id);
+        }
+
         $('#next').html(ui.item.next().attr('id'));
       }
     });
