@@ -26,6 +26,9 @@
   color:#2476FF;
   text-decoration:none;
 }
+.nested_set .handle{
+  cursor: move;
+}
 .nested_set .link{
   overflow: hidden;
   zoom:1;
