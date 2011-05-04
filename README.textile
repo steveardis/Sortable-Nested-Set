@@ -1,0 +1,29 @@
+h3. Sortable Nested Set for Rails 3
+
+Dreaming about Drag and Drop for Nested Sets? It's should be with JQuery?
+Here's the solution!
+
+Server side:
+
+# Rails 3
+# Nested Set Gem
+
+Client side:
+
+# JQuery 1.6 +
+# jQuery UI Nested Sortable (Manuele J Sarfatti)
+# piece of Ajax code
+
+h3. Installing
+
+# cd ~
+# git clone git@github.com:the-teacher/Sortable-Nested-Set.git
+# cd Sortable-Nested-Set/
+# sudo bundle install
+# rake app:create
+# rails s
+
+*Browser: localhost:3000*
+
+External links
+
