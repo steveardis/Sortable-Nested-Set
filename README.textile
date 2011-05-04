@@ -27,3 +27,8 @@ h3. Installing
 
 External links
 
+# jQuery UI Nested Sortable "http://mjsarfatti.com/sandbox/nestedSortable/":http://mjsarfatti.com/sandbox/nestedSortable/
+# Rails 3 Nested Set Gem "https://github.com/skyeagle/nested_set":https://github.com/skyeagle/nested_set
+# *Patch for jQuery UI Nested Sortable* to make it ready for rails 3 "PATCH":https://github.com/the-teacher/nestedSortable/commit/2791aae25166729de1f7156d506c79c34720b8e8
+
+
