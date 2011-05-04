@@ -1,7 +1,7 @@
 module AnsHelper
   # Publicated by MIT
   # Awesome Nested Set View Helper
-  # Ilya Zykin, zykin-ilya@ya.ru, Russia, Ivanovo 2009
+  # Ilya Zykin, zykin-ilya@ya.ru, Russia, Ivanovo 2009-2011
   # github.com/the-teacher
   #-------------------------------------------------------------------------------------------------------
   
@@ -31,10 +31,10 @@ module AnsHelper
     opts= {
       :node=>nil,         # node
       :admin=>false,      # render admin tree?
-      :root=>false,       # is it root? 
+      :root=>false,       # is it root node? 
       :id_field=>'id',    # id field name, id by default
       :class_name=>nil,   # class of nested elements
-      :path => 'ans',     # default view path
+      :path => 'ans',     # default view partials path
       :first=>false,      # first element flag
       :last=>false,       # last element flag
       :level=> 0,         # recursion level
@@ -53,11 +53,11 @@ module AnsHelper
 
     unless node
       roots= tree.select{|elem| elem.parent_id.nil?}
-      # find is of first and last root node
+      # find ids of first and last root node
       roots_first_id= roots.empty? ? nil : roots.first.id
       roots_last_id=  roots.empty? ? nil : roots.last.id
       
-      # render root
+      # render roots
       roots.each do |root|
         is_first= (root.id==roots_first_id)
         is_last= (root.id==roots_last_id)
@@ -91,13 +91,12 @@ module AnsHelper
         childs_res << ans_tree(tree, _opts)
       end
 
-      # decorate childs with div tag
+      # build views
       childs_res= childs_res.blank? ? '' : render(:partial=>"#{opts[:path]}/nested_set", :locals=>{:parent=>node, :childs=>childs_res})
-
-      # concat elems to res string
-      node_block= render(:partial=>"#{opts[:path]}/node", :locals=>{:node=>node, :opts=>opts, :root=>root, :controls=>controls})
+      node_block= render(:partial=>"#{opts[:path]}/link", :locals=>{:node=>node, :opts=>opts, :root=>root, :controls=>controls})
       res= render(:partial=>"#{opts[:path]}/nested_set_item",  :locals=>{:node=>node, :node_block=>node_block, :childs=>childs_res})
 
+      # TODO: TEST DRIVE!!! NOW!
       # delete current node from tree if you want
       # I hope, with it, recursively moving by tree must be faster
       node_id= node.id # remove?
@@ -106,6 +105,7 @@ module AnsHelper
       result << res
     end
     
+    # decorate with 'create root' links
     if opts[:level].zero?
       top_root= create_root_element_link(opts[:class_name], opts.merge({:top_root=>true})) 
       result=   top_root + raw(result)
