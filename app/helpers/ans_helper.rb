@@ -93,8 +93,8 @@ module AnsHelper
 
       # build views
       childs_res= childs_res.blank? ? '' : render(:partial=>"#{opts[:path]}/nested_set", :locals=>{:parent=>node, :childs=>childs_res})
-      node_block= render(:partial=>"#{opts[:path]}/link", :locals=>{:node=>node, :opts=>opts, :root=>root, :controls=>controls})
-      res= render(:partial=>"#{opts[:path]}/nested_set_item",  :locals=>{:node=>node, :node_block=>node_block, :childs=>childs_res})
+      link= render(:partial=>"#{opts[:path]}/link", :locals=>{:node=>node, :opts=>opts, :root=>root, :controls=>controls})
+      res= render(:partial=>"#{opts[:path]}/nested_set_item",  :locals=>{:node=>node, :link=>link, :childs=>childs_res})
 
       # TODO: TEST DRIVE!!! NOW!
       # delete current node from tree if you want

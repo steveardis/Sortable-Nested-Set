@@ -70,22 +70,29 @@
     background:#fbe3e4;
     color:#8a1f11;
   }
+  .nested_set_info{
+    border:1px solid #CCC;
+    margin:5px 0 15px 0;
+    padding:10px;
+  }
+  .nested_set_info span{
+    border:1px solid #CCF;
+    margin:0 10px;
+    padding:2px 5px;
+  }
 
-%p
+%p.nested_set_info
   Item: 
-  #item
+  %span#item
     &nbsp;
-%p
   Parent: 
-  #parent
+  %span#parent
     &nbsp;
-%p
   Prev sibling: 
-  #prev
+  %span#prev
     &nbsp;
-%p
   Next sibling: 
-  #next
+  %span#next
     &nbsp;
 
 %ol.sortable.ui-sortable.nested_set#pages_nested_set

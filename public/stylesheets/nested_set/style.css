@@ -15,7 +15,7 @@
   text-decoration:none;
   line-height: 150%;
   display: block;
-  margin-right:140px;
+  margin:0 140px 0 20px;
   overflow:hidden;
   zoom:1;
 }
@@ -60,6 +60,12 @@
 }
 .nested_set .root_create_link a{
   font-size:14pt;
+}
+.nested_set .handle{
+  width:16px;
+  height:16px;
+  float:left;
+  background:transparent url(/images/iconza/blue/move.png) no-repeat scroll center center;
 }
 .nested_set .button.new{ background:transparent url(/images/iconza/blue/add.png) no-repeat scroll center center; }
 .nested_set .button.new:hover{ background:transparent url(/images/iconza/red/add.png) no-repeat scroll center center;}
